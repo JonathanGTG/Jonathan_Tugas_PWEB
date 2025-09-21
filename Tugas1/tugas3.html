@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta cha,rset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style3.css">
+     
+</head>
+<body>
+    <h1>Kalkulator Sederhana</h1>
+    <form name="kalkulator">
+        <table>
+            <tr>
+                <td>Bilangan 1</td>
+                <td><input type="number" name="bilangan1" size="30"></td>
+            </tr>
+
+            <tr>
+                <td>Bilangan 2</td>
+                <td><input type="number" name="bilangan2" size="30"></td>
+            </tr>
+            <tr>
+                <td>Hasil</td>
+                <td id="hasil"></td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td><button type="button" onclick="proses('tambah')" name="tambah">+</button>
+                    <button type="button" onclick="proses('kurang')" name="kurang">-</button>
+                    <button type="button" onclick="proses('kali')" name="kali">x</button>
+                    <button type="button" onclick="proses('bagi')" name="bagi">:</button>
+                </td>
+            </tr>
+        </table>
+        <script>
+            function isNull(val) {
+                return val == "" || val == null || isNaN(val);
+            }
+
+            function proses(operasi) {
+                let bilangan1 = document.kalkulator.bilangan1.value;
+                let bilangan2 = document.kalkulator.bilangan2.value;
+
+                if (isNull(bilangan1) || isNull(bilangan2)) {
+                    document.getElementById('hasil').textContent = "Input tidak boleh kosong!";
+                    return;
+                }
+
+                bilangan1 = Number(bilangan1);
+                bilangan2 = Number(bilangan2);
+                let hasil;
+                switch (operasi) {
+                    case 'tambah':
+                        hasil = bilangan1 + bilangan2;
+                        break;
+                    case 'kurang':
+                        hasil = bilangan1 - bilangan2;
+                        break;
+                    case 'kali':
+                        hasil = bilangan1 * bilangan2;
+                        break;
+                    case 'bagi':
+                        hasil = bilangan2 !== 0 ? bilangan1 / bilangan2 : 'Tak terdefinisi';
+                        break;
+                    default:
+                        hasil = '';
+                }
+                document.getElementById('hasil').textContent = hasil;
+            }
+        </script>
+    </form>
+    
+</body>
+</html>
